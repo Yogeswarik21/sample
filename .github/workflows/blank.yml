@@ -28,9 +28,8 @@ jobs:
         run: |
           docker build -t docker.io/yogesh2196/aquagithubimage:${{ github.sha }} .
           docker login registry.aquasec.com -u p.a.chaurasia@accenture.com -p Aqua@2021  
-          docker pull mongo:latest
           docker pull registry.aquasec.com/scanner:6.2  
-          docker run --rm -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:6.2 scan --local mongo:latest --host https://04cn3gaaq-d.cloud.aquasec.com/ --user p.a.chaurasia@accenture.com --password Aqua@2021 --show-negligible --html --htmlfile /tmp/out.html --jsonfile /tmp/out.json > /dev/null
+          docker run --rm -v /tmp:/tmp -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:6.2 scan --registry "Docker Hub" yogesh2196/aquagithubimage --host https://04cn3gaaq-d.cloud.aquasec.com/ --user p.a.chaurasia@accenture.com --password Aqua@2021 --show-negligible --html --htmlfile /tmp/out.html --jsonfile /tmp/out.json > /dev/null
           cp /tmp/out.html /tmp/out.json .
           pwd
           ls
@@ -39,6 +38,7 @@ jobs:
         with:
           name: scan-report
           path: out.html
+
           
      
       
