@@ -34,6 +34,12 @@ jobs:
           cp /tmp/out.html /tmp/out.json .
           pwd
           ls
+      - name: Archive Scan results
+        uses: actions/upload-artifact@v2
+        with:
+          name: scan-report
+          path: out.html
+          
      
       
             
