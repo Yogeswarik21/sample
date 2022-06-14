@@ -27,7 +27,7 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/yogesh2196/aquagithubimage:${{ github.sha }} .
-          docker login -u yogesh2196 -p Yogeshwari_k96
+          docker login -u ${{ secrets.docker_user }} -p ${{ secrets.docker_password }}
           docker push yogesh2196/aquagithubimage:${{ github.sha }}
           docker login registry.aquasec.com -u ${{ secrets.User }} -p ${{ secrets.Password }}  
           docker pull registry.aquasec.com/scanner:6.2  
